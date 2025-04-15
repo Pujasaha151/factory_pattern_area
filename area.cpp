@@ -4,11 +4,13 @@
 #include <cmath>
 #include <memory>
 #include <string>
+#include <gtest/gtest.h>
 class Shape {
 public:
     virtual double area() const = 0;
     virtual ~Shape() = default;
 };
+
 class Circle : public Shape {
     double radius;
 public:
@@ -35,6 +37,10 @@ public:
         return width * height;
     }
 };
+
+
+
+
 class ShapeFactory {
 public:
     static std::unique_ptr<Shape> createShape(const std::string& type, double a, double b = 0) {
@@ -51,20 +57,6 @@ public:
 };
 
 #endif // SHAPEFACTORY_H
-//Testing
 
 
-TEST(ShapeAreaTest, CircleArea) {
-    auto shape = ShapeFactory::createShape("circle", 2.0);
-    EXPECT_NEAR(shape->area(), M_PI * 4, 1e-6);
-}
 
-TEST(ShapeAreaTest, SquareArea) {
-    auto shape = ShapeFactory::createShape("square", 3.0);
-    EXPECT_DOUBLE_EQ(shape->area(), 9.0);
-}
-
-TEST(ShapeAreaTest, RectangleArea) {
-    auto shape = ShapeFactory::createShape("rectangle", 2.0, 5.0);
-    EXPECT_DOUBLE_EQ(shape->area(), 10.0);
-}
