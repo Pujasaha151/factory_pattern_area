@@ -51,3 +51,20 @@ public:
 };
 
 #endif // SHAPEFACTORY_H
+//Testing
+
+
+TEST(ShapeAreaTest, CircleArea) {
+    auto shape = ShapeFactory::createShape("circle", 2.0);
+    EXPECT_NEAR(shape->area(), M_PI * 4, 1e-6);
+}
+
+TEST(ShapeAreaTest, SquareArea) {
+    auto shape = ShapeFactory::createShape("square", 3.0);
+    EXPECT_DOUBLE_EQ(shape->area(), 9.0);
+}
+
+TEST(ShapeAreaTest, RectangleArea) {
+    auto shape = ShapeFactory::createShape("rectangle", 2.0, 5.0);
+    EXPECT_DOUBLE_EQ(shape->area(), 10.0);
+}
